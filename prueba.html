@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traducción basada en ubicación</title>
+</head>
+<body>
+    <div id="content">
+        <p>Bienvenido a nuestro sitio web.</p>
+        <p>Este es un ejemplo de texto que se traducirá.</p>
+    </div>
+
+    <script>
+        // Función para detectar la ubicación del usuario
+        async function detectUserCountry() {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            return data.country;
+        }
+
+        // Función para traducir texto
+        async function translateText(text, targetLang) {
+            const apiKey = 'AIzaSyBBzU_mgbNRFdncgerZYr7aMh-ksQNz6lk'; // Reemplaza con tu API Key
+            const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    q: text,
+                    target: targetLang
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            return data.data.translations[0].translatedText;
+        }
+
+        // Función principal
+        async function init() {
+            const countryCode = await detectUserCountry();
+            const content = document.getElementById('content');
+            const texts = Array.from(content.getElementsByTagName('p')).map(p => p.innerText);
+            
+            let targetLang;
+
+            // Definir el idioma según el país
+            switch (countryCode) {
+                case 'US':
+                case 'GB':
+                    targetLang = 'en'; // Inglés
+                    break;
+                case 'FR':
+                    targetLang = 'fr'; // Francés
+                    break;
+                case 'IT':
+                    targetLang = 'it'; // Italiano
+                    break;
+                default:
+                    return; // No hacer nada si no está en uno de los países especificados
+            }
+
+            // Traducir el contenido
+            for (let text of texts) {
+                const translatedText = await translateText(text, targetLang);
+                content.innerHTML = content.innerHTML.replace(text, translatedText);
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

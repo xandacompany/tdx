@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /ads.txt
+Disallow: /assets/
+Sitemap: https://URL.com/sitemap.xml
