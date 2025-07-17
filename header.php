@@ -13,7 +13,7 @@
     <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
     <meta name="google-adsense-account" content="ca-pub-2107247831846945">
 
-    <title>TDX Digital Acceleration</title>
+    <title>TDX Digital Acceleration 1</title>
 
     <!-- SEO -->
     <meta name="description" content="En TDX transformamos negocios con soluciones tecnológicas innovadoras. Ofrecemos desarrollo web y ecommerce, integración de chatbots y WhatsApp para optimizar operaciones y aumentar la eficiencia. Como expertos en servicios de TI en Colombia y Guatemala, ayudamos a empresas en América a acelerar su transformación digital con tecnología de vanguardia. ¡Descubre cómo TDX puede transformar tu negocio!">
